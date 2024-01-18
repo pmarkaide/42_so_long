@@ -6,18 +6,21 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:20:20 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/17 12:52:42 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/18 14:44:16 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/libft.h"
 #include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 typedef struct s_data
 {
-	char	**map;
+	char	*map;
 	int		rows;
 	int		cols;
 }			t_data;
