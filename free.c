@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 11:20:20 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/18 17:37:31 by pmarkaid         ###   ########.fr       */
+/*   Created: 2024/01/18 16:13:29 by pmarkaid          #+#    #+#             */
+/*   Updated: 2024/01/18 17:28:26 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include <errno.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
+#include "so_long.h"
 
-typedef struct s_data
-{
-	char	*map_str;
-	char	**map;
-	size_t		rows;
-	size_t		cols;
-}			t_data;
-
-t_data	*map_is_valid(char *map_file, t_data *data);
-size_t		count_rows_in_array(char **map);
-void free_data(t_data *data);
+void free_data(t_data *data) {
+    size_t i;
+	
+	i = 0;
+	free(data->map_str);
+	while (i < data->rows)
+	{
+		ft_printf("Row %d freed...\n", i);
+		ft_printf("%s\n", data->map[i]);
+		free(data->map[i]);
+		i++;
+	}
+    free(data->map);
+	data->map_str = NULL;
+    data->map = NULL;
+    free(data);
+}

@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:14:46 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/17 14:09:21 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:39:54 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,19 @@
 
 int	main(int argc, char **argv)
 {
-	t_data	data;
+	t_data	*data;
 
-	if (argc != 2 || map_is_valid(argv[1], &data) != 0)
+	data = NULL;
+	if (argc != 2)
 	{
 		perror("Error\n");
 		return (1);
 	}
-	data.rows = 0;
+	data = map_is_valid(argv[1], data);
+	if (data != NULL)
+    {
+		//run game
+        free_data(data);
+    }
 	return (0);
 }

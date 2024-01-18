@@ -6,7 +6,7 @@
 #    By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 11:10:37 by pmarkaid          #+#    #+#              #
-#    Updated: 2024/01/18 14:44:17 by pmarkaid         ###   ########.fr        #
+#    Updated: 2024/01/18 16:14:43 by pmarkaid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,10 @@ NAME = so_long
 
 SRCS = \
 	so_long.c \
-	map_is_valid.c
+	map_is_valid.c \
+	error.c \
+	map.c \
+	free.c
 
 LIBFT_REPO = https://github.com/pmarkaide/42_libft
 LIBFT_TAG = v.1.2.0
