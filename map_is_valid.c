@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/19 11:45:46 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/19 15:39:35 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	file_is_valid(char *map_file)
 		perror("Error opening file");
 		return (1);
 	}
+	close(fd);
 	return (0);
 }
 
@@ -88,31 +89,55 @@ int	load_map(char *map_file, t_data *data)
 	return (0);
 }
 
-int check_chars(t_data *data)
+int	check_layout(t_data *data)
 {
-	size_t i;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	while(data->map_str[i])
+	j = 0;
+	while (i < data->rows)
 	{
-		if(ft_strchr("PEC10\n", data->map_str[i]) == NULL)
+		if (ft_strlen(data->map[i]) != data->cols)
+			return (handle_error("Error\nMap not rectangular\n"));
+		if (i == 0 || i == data->rows - 1)
 		{
-			perror("Error\nNot allowed characters\n");
-			return(1);
+			if (data->map[i][j] && ft_strchr("1", data->map[i][j]) == NULL)
+				return (handle_error("Error\nIncorrect walls\n"));
+			j = 0;
+		}
+		else
+		{
+			if (data->map[i][0] != '1' || data->map[i][data->cols - 1] != '1')
+				return (handle_error("Error\nIncorrect walls\n"));
 		}
 		i++;
 	}
+	return (0);
+}
+
+int	check_chars(t_data *data)
+{
+	size_t	i;
+	size_t	p;
+	size_t	e;
+
 	i = 0;
-	while(i < data->rows)
+	p = 0;
+	e = 0;
+	while (data->map_str[i])
 	{
-		if(ft_strlen(data->map[i]) != data->cols)
-		{
-			perror("Error\nMap not reactangular\n");
-			return(1);
-		}
+		if (ft_strchr("PEC10\n", data->map_str[i]) == NULL)
+			return (handle_error("Error\nNot allowed characters\n"));
+		if (ft_strchr("P", data->map_str[i]))
+			p++;
+		if (ft_strchr("E", data->map_str[i]))
+			e++;
 		i++;
 	}
-	return(0);	
+	if (p > 1 || e > 1)
+		return (handle_error("Error\nRepeated characters\n"));
+	return (0);
 }
 
 t_data	*map_is_valid(char *map_file, t_data *data)
@@ -122,8 +147,9 @@ t_data	*map_is_valid(char *map_file, t_data *data)
 	valid = 0;
 	valid += file_is_valid(map_file);
 	valid += load_map(map_file, data);
-	//valid += check_chars(data);
-	if(valid != 0)
+	valid += check_layout(data);
+	valid += check_chars(data);
+	if (valid != 0)
 		ft_printf("Map NOT valid!\n");
 	return (data);
 }
