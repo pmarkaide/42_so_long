@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:20:20 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/19 13:18:32 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/19 17:26:56 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_data
 {
 	char	*map_str;
 	char	**map;
+	char	**visited;
 	size_t	rows;
 	size_t	cols;
 }			t_data;
