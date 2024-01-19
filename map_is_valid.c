@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/18 17:44:16 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:45:46 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,25 +70,21 @@ int	load_map(char *map_file, t_data *data)
 {
 	int		fd;
 	size_t	file_len;
-	char	*map_str;
 
 	file_len = get_file_length_in_bytes(map_file);
-	printf("File size is: %zu\n",file_len);
-	map_str = malloc(sizeof(char) * file_len + 1);
-	if (!map_str)
+	data->map_str = malloc(sizeof(char) * (file_len + 1));
+	if (!data->map_str)
+	{
+		free_data(data);
 		return (1);
-	printf("Malloc correct");
+	}
 	fd = open(map_file, O_RDONLY);
-	read(fd, map_str, file_len);
+	read(fd, data->map_str, file_len);
 	close(fd);
-	data->map_str = map_str;
-	ft_printf("map:\n%s\n", data->map_str);
-	data->map = ft_split(map_str, '\n');
-	
+	data->map_str[file_len] = '\0';
+	data->map = ft_split(data->map_str, '\n');
 	data->rows = count_rows_in_array(data->map);
-	printf("rows: %zu\n", data->rows);
 	data->cols = ft_strlen(data->map[0]);
-	printf("cols: %zu\n", data->cols);
 	return (0);
 }
 
@@ -125,20 +121,9 @@ t_data	*map_is_valid(char *map_file, t_data *data)
 
 	valid = 0;
 	valid += file_is_valid(map_file);
-	ft_printf("File is valid!\n");
 	valid += load_map(map_file, data);
-	ft_printf("Loading map!\n");
 	//valid += check_chars(data);
-	if(valid == 0)
-		ft_printf("Valid map!\n");
-	else
+	if(valid != 0)
 		ft_printf("Map NOT valid!\n");
-	// size_t i = 0;
-	// while (i < data->rows)
-	// {
-	// 	ft_printf("Row %d freed...\n", i);
-	// 	ft_printf("%s\n", data->map[i]);
-	// 	i++;
-	// }
 	return (data);
 }

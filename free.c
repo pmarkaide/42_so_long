@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:13:29 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/18 17:28:26 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:32:42 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void free_data(t_data *data) {
 	free(data->map_str);
 	while (i < data->rows)
 	{
-		ft_printf("Row %d freed...\n", i);
-		ft_printf("%s\n", data->map[i]);
 		free(data->map[i]);
 		i++;
 	}

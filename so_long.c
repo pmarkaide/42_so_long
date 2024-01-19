@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:14:46 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/18 17:39:54 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:33:01 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_data	*data;
 
-	data = NULL;
+	data = malloc(sizeof(t_data));
 	if (argc != 2)
 	{
 		perror("Error\n");
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	if (data != NULL)
     {
 		//run game
-        free_data(data);
     }
+	free_data(data);
 	return (0);
 }
