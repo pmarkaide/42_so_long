@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/19 16:13:57 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/20 12:37:58 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,15 @@ int	check_layout(t_data *data)
 			return (handle_error("Error\nMap not rectangular\n"));
 		if (i == 0 || i == data->rows - 1)
 		{
-			if (data->map[i][j] && ft_strchr("1", data->map[i][j]) == NULL)
-				return (handle_error("Error\nIncorrect walls\n"));
 			j = 0;
+			while (data->map[i][j])
+			{
+				if (ft_strchr("1", data->map[i][j++]) == NULL)
+					return (handle_error("Error\nIncorrect walls\n"));
+			}
 		}
-		else
-		{
-			if (data->map[i][0] != '1' || data->map[i][data->cols - 1] != '1')
-				return (handle_error("Error\nIncorrect walls\n"));
-		}
+		if (data->map[i][0] != '1' || data->map[i][data->cols - 1] != '1')
+			return (handle_error("Error\nIncorrect walls edges\n"));
 		i++;
 	}
 	return (0);
