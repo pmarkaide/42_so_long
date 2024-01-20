@@ -1,8 +1,10 @@
 .DS_Store
 *.pdf
 *.code-workspace
+.vscode
 so_long
 libft/
+test*
 
 # Prerequisites
 *.d
