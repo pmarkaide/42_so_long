@@ -6,20 +6,11 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/20 12:37:58 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/20 16:40:07 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-// TO_DO
-// DONE file extension is valid
-// DONE map is rectangular
-// DONE walls are correct
-// DONE only valid chars
-// DONE only one char
-// valid path
-//
 
 int	load_map(char *map_file, t_data *data)
 {
@@ -40,6 +31,7 @@ int	load_map(char *map_file, t_data *data)
 	data->map = ft_split(data->map_str, '\n');
 	data->rows = count_rows_in_array(data->map);
 	data->cols = ft_strlen(data->map[0]);
+	data->visited = allocate_2d_array(data->rows, data->cols);
 	return (0);
 }
 
@@ -64,7 +56,7 @@ int	check_layout(t_data *data)
 			}
 		}
 		if (data->map[i][0] != '1' || data->map[i][data->cols - 1] != '1')
-			return (handle_error("Error\nIncorrect walls edges\n"));
+			return (handle_error("Error\nIncorrect walls\n"));
 		i++;
 	}
 	return (0);
@@ -103,7 +95,6 @@ t_data	*map_is_valid(char *map_file, t_data *data)
 	valid += load_map(map_file, data);
 	valid += check_layout(data);
 	valid += check_chars(data);
-	if (valid != 0)
-		ft_printf("Map NOT valid!\n");
+	valid += check_path(data);
 	return (data);
 }

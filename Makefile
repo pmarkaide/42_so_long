@@ -6,7 +6,7 @@
 #    By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 11:10:37 by pmarkaid          #+#    #+#              #
-#    Updated: 2024/01/20 12:42:45 by pmarkaid         ###   ########.fr        #
+#    Updated: 2024/01/20 14:20:10 by pmarkaid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRCS = \
 	error.c \
 	map.c \
 	free.c \
-	utils.c
+	utils.c \
+	flood_fill.c
 
 LIBFT_REPO = https://github.com/pmarkaide/42_libft
 LIBFT_TAG = v.1.2.0
