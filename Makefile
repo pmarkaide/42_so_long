@@ -6,7 +6,7 @@
 #    By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 11:10:37 by pmarkaid          #+#    #+#              #
-#    Updated: 2024/01/20 17:54:02 by pmarkaid         ###   ########.fr        #
+#    Updated: 2024/01/20 18:26:05 by pmarkaid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,9 @@ TEST_SRCS = \
 	free.c \
 	utils.c \
 	flood_fill.c
+
+SRCS_DIR = src
+SRCS := $(addprefix $(SRCS_DIR)/, $(SRCS))
 
 LIBFT_REPO = https://github.com/pmarkaide/42_libft
 LIBFT_TAG = v.1.2.0

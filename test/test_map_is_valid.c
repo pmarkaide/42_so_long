@@ -6,13 +6,13 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 16:50:37 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/20 17:49:36 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:11:50 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 #include "unity/src/unity.h"
-#include "../so_long.h"
+#include "../includes/so_long.h"
 
 int load_map(const char* map_file, t_data* data);
 

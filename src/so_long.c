@@ -6,11 +6,11 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:14:46 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/20 14:28:09 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:06:29 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 int	main(int argc, char **argv)
 {
