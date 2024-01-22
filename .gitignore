@@ -3,7 +3,7 @@
 *.code-workspace
 .vscode
 so_long
-libft/
+lib/
 test*
 
 # Prerequisites
