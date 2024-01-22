@@ -6,11 +6,11 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:13:29 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/20 18:06:29 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:32:05 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../include/so_long.h"
 
 void	free_data(t_data *data)
 {

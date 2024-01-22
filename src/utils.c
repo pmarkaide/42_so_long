@@ -6,11 +6,11 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:12:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/20 18:06:29 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:32:13 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../include/so_long.h"
 
 int	file_is_valid(char *map_file)
 {

@@ -6,11 +6,11 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:15:01 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/20 18:06:29 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:32:03 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../include/so_long.h"
 
 int	is_valid_position(size_t x, size_t y, t_data *data)
 {
