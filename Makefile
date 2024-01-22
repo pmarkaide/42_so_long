@@ -6,7 +6,7 @@
 #    By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 11:10:37 by pmarkaid          #+#    #+#              #
-#    Updated: 2024/01/22 11:19:22 by pmarkaid         ###   ########.fr        #
+#    Updated: 2024/01/22 12:33:31 by pmarkaid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 MLX42_REPO = https://github.com/codam-coding-college/MLX42.git
 MLX42_DIR = $(LIB_DIR)/MLX42
-LIBS	= $(MLX42_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
+LIBS = $(MLX42_DIR)/build/libmlx42.a -L $(shell brew --prefix glfw)/lib -lglfw -ldl -pthread -lm
 
 OBJS = $(SRCS:.c=.o)
 TEST_OBJS = $(TEST_SRCS:.c=.o)
@@ -58,12 +58,12 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(LIBFT_INCLUDE) -c $< -o $@
+	$(CC) $(CFLAGS) $(LIBFT_INCLUDE) $(MLX42_INCLUDE) -c $< -o $@
 
 all: $(LIBFT) $(NAME) libmlx
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(LIBFT_INCLUDE) -o $(NAME) $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(LIBFT_INCLUDE) $(LIBS) -o $(NAME) $(OBJS) $(LIBFT)
 
 $(LIBFT):
 	git clone --branch $(LIBFT_TAG) --single-branch $(LIBFT_REPO) $(LIBFT_DIR)

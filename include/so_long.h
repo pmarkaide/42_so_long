@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:20:20 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/20 18:07:23 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:32:35 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include "../lib/MLX42/include/MLX42/MLX42.h"
+#define WIDTH 256
+#define HEIGHT 256
 
 typedef struct s_data
 {
