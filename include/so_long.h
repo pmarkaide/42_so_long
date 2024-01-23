@@ -6,20 +6,22 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:20:20 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/22 12:32:35 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/23 14:37:47 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
+#include "../lib/MLX42/include/MLX42/MLX42.h"
 #include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include "../lib/MLX42/include/MLX42/MLX42.h"
-#define WIDTH 256
-#define HEIGHT 256
+#include <memory.h>
+
+#define WIDTH 1800
+#define HEIGHT 1000
 
 typedef struct s_data
 {
@@ -41,3 +43,4 @@ int			file_is_valid(char *map_file);
 int			check_path(t_data *data);
 size_t		**allocate_2d_array(size_t rows, size_t cols);
 void		print_2d_array(size_t **array, size_t c);
+int32_t		game_init(void);

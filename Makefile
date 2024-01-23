@@ -6,7 +6,7 @@
 #    By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 11:10:37 by pmarkaid          #+#    #+#              #
-#    Updated: 2024/01/22 12:33:31 by pmarkaid         ###   ########.fr        #
+#    Updated: 2024/01/23 14:15:48 by pmarkaid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRCS = \
 	map.c \
 	free.c \
 	utils.c \
-	flood_fill.c
+	flood_fill.c \
+	game_init.c
 
 TEST_SRCS = \
 	test/test_map_is_valid.c \
