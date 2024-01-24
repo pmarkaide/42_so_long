@@ -6,7 +6,7 @@
 #    By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 11:10:37 by pmarkaid          #+#    #+#              #
-#    Updated: 2024/01/23 14:15:48 by pmarkaid         ###   ########.fr        #
+#    Updated: 2024/01/24 12:37:21 by pmarkaid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS = \
 	free.c \
 	utils.c \
 	flood_fill.c \
-	game_init.c
+	game.c
 
 TEST_SRCS = \
 	test/test_map_is_valid.c \
@@ -63,7 +63,7 @@ CFLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast
 
 all: $(LIBFT) $(NAME) libmlx
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) libmlx
 	$(CC) $(CFLAGS) $(LIBFT_INCLUDE) $(LIBS) -o $(NAME) $(OBJS) $(LIBFT)
 
 $(LIBFT):
@@ -71,7 +71,7 @@ $(LIBFT):
 	make -C $(LIBFT_DIR)
 
 $(MLX42_DIR):
-	if [ ! -d $(MLX42_DIR) ]; then git clone $(MLX42_REPO) $(MLX42_DIR); fi
+	git clone $(MLX42_REPO) $(MLX42_DIR)
 
 libmlx:
 	cmake $(MLX42_DIR) -B $(MLX42_DIR)/build && make -C $(MLX42_DIR)/build -j4

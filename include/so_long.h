@@ -6,11 +6,11 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:20:20 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/23 14:37:47 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:03:23 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include "../lib/libft/libft.h"
 #include "../lib/MLX42/include/MLX42/MLX42.h"
 #include <errno.h>
 #include <fcntl.h>
