@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:14:46 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/23 14:32:24 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:39:49 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 int	main(int argc, char **argv)
 {
-	t_data	*data;
+	t_map	*map;
 
-	data = malloc(sizeof(t_data));
+	map = malloc(sizeof(t_map));
 	if (argc != 2)
 	{
 		perror("Error\n");
 		return (1);
 	}
-	data = map_is_valid(argv[1], data);
-	if (data->map_str != NULL)
+	map = map_is_valid(argv[1], map);
+	if (map->map_str != NULL)
 	{
-		game_init();
+		printf("Valid map!\n");
 	}
-	free_data(data);
+	free_map(map);
 	return (0);
 }

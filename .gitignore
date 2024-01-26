@@ -5,6 +5,7 @@
 so_long
 lib/
 test*
+*working*
 
 # Prerequisites
 *.d

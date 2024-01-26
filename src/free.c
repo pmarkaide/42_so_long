@@ -6,26 +6,26 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:13:29 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/22 12:32:05 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:37:28 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	free_data(t_data *data)
+void	free_map(t_map *map)
 {
 	size_t	i;
 
 	i = 0;
-	free(data->map_str);
-	while (i < data->rows)
+	free(map->map_str);
+	while (i < map->rows)
 	{
-		if (data->map[i] != NULL)
-			free(data->map[i]);
+		if (map->map[i] != NULL)
+			free(map->map[i]);
 		i++;
 	}
-	free(data->map);
-	data->map_str = NULL;
-	data->map = NULL;
-	free(data);
+	free(map->map);
+	map->map_str = NULL;
+	map->map = NULL;
+	free(map);
 }

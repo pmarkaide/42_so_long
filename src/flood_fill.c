@@ -6,55 +6,55 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:15:01 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/22 12:32:03 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:37:54 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int	is_valid_position(size_t x, size_t y, t_data *data)
+int	is_valid_position(size_t x, size_t y, t_map *map)
 {
-	if (x < 0 || x >= data->rows)
+	if (x < 0 || x >= map->rows)
 		return (0);
-	if (y < 0 || y >= data->cols)
+	if (y < 0 || y >= map->cols)
 		return (0);
-	if (data->map[x][y] == '1')
+	if (map->map[x][y] == '1')
 		return (0);
-	if (data->visited[x][y])
+	if (map->visited[x][y])
 		return (0);
 	return (1);
 }
 
-void	flood_fill(int x, int y, t_data *data)
+void	flood_fill(int x, int y, t_map *map)
 {
-	if (!is_valid_position(x, y, data))
+	if (!is_valid_position(x, y, map))
 		return ;
-	data->visited[x][y] = 1;
-	flood_fill(x - 1, y, data);
-	flood_fill(x + 1, y, data);
-	flood_fill(x, y - 1, data);
-	flood_fill(x, y + 1, data);
+	map->visited[x][y] = 1;
+	flood_fill(x - 1, y, map);
+	flood_fill(x + 1, y, map);
+	flood_fill(x, y - 1, map);
+	flood_fill(x, y + 1, map);
 }
 
 // starting position calculation
 // check C and E against visited
 
-void	get_starting_point(t_data *data)
+void	get_starting_point(t_map *map)
 {
 	size_t	i;
 	size_t	j;
 
 	i = 0;
 	j = 0;
-	while (i < data->rows)
+	while (i < map->rows)
 	{
 		j = 0;
-		while (j < data->cols)
+		while (j < map->cols)
 		{
-			if (data->map[i][j] == 'P')
+			if (map->map[i][j] == 'P')
 			{
-				data->start_x = i;
-				data->start_y = j;
+				map->start_x = i;
+				map->start_y = j;
 				return ;
 			}
 			j++;
@@ -63,23 +63,23 @@ void	get_starting_point(t_data *data)
 	}
 }
 
-int	check_path(t_data *data)
+int	check_path(t_map *map)
 {
 	size_t	i;
 	size_t	j;
 
 	i = 0;
 	j = 0;
-	get_starting_point(data);
-	flood_fill(data->start_x, data->start_y, data);
-	while (i < data->rows)
+	get_starting_point(map);
+	flood_fill(map->start_x, map->start_y, map);
+	while (i < map->rows)
 	{
 		j = 0;
-		while (j < data->cols)
+		while (j < map->cols)
 		{
-			if (data->map[i][j] == 'C' || data->map[i][j] == 'E')
+			if (map->map[i][j] == 'C' || map->map[i][j] == 'E')
 			{
-				if (!data->visited[i][j])
+				if (!map->visited[i][j])
 					return (handle_error("Error\nNo valid path exists!\n"));
 			}
 			j++;
