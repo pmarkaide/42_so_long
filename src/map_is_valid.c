@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/26 13:37:02 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:53:13 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,18 @@ int	check_layout(t_map *map)
 	while (i < map->rows)
 	{
 		if (ft_strlen(map->map[i]) != map->cols)
-			return (handle_error("Error\nMap not rectangular\n"));
+			return (error_1("Error\nMap not rectangular\n"));
 		if (i == 0 || i == map->rows - 1)
 		{
 			j = 0;
 			while (map->map[i][j])
 			{
 				if (ft_strchr("1", map->map[i][j++]) == NULL)
-					return (handle_error("Error\nIncorrect walls\n"));
+					return (error_1("Error\nIncorrect walls\n"));
 			}
 		}
 		if (map->map[i][0] != '1' || map->map[i][map->cols - 1] != '1')
-			return (handle_error("Error\nIncorrect walls\n"));
+			return (error_1("Error\nIncorrect walls\n"));
 		i++;
 	}
 	return (0);
@@ -74,7 +74,7 @@ int	check_chars(t_map *map)
 	while (map->map_str[i])
 	{
 		if (ft_strchr("PEC10\n", map->map_str[i]) == NULL)
-			return (handle_error("Error\nNot allowed characters\n"));
+			return (error_1("Error\nNot allowed characters\n"));
 		if (ft_strchr("P", map->map_str[i]))
 			p++;
 		if (ft_strchr("E", map->map_str[i]))
@@ -82,7 +82,7 @@ int	check_chars(t_map *map)
 		i++;
 	}
 	if (p > 1 || e > 1)
-		return (handle_error("Error\nRepeated characters\n"));
+		return (error_1("Error\nRepeated characters\n"));
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:15:01 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/26 13:37:54 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:53:13 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	check_path(t_map *map)
 			if (map->map[i][j] == 'C' || map->map[i][j] == 'E')
 			{
 				if (!map->visited[i][j])
-					return (handle_error("Error\nNo valid path exists!\n"));
+					return (error_1("Error\nNo valid path exists!\n"));
 			}
 			j++;
 		}
