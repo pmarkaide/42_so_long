@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:15:01 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/26 13:53:13 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/02 10:48:56 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	is_valid_position(size_t x, size_t y, t_map *map)
 {
-	if (x < 0 || x >= map->rows)
+	if (x >= map->rows)
 		return (0);
-	if (y < 0 || y >= map->cols)
+	if (y >= map->cols)
 		return (0);
 	if (map->map[x][y] == '1')
 		return (0);
