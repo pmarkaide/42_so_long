@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/26 13:53:13 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/02 14:58:34 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	load_map(char *map_file, t_map *map)
 {
 	int		fd;
 	size_t	file_len;
+	size_t	bytes_read;
 
 	file_len = get_file_length_in_bytes(map_file);
 	map->map_str = malloc(sizeof(char) * (file_len + 1));
@@ -25,7 +26,9 @@ int	load_map(char *map_file, t_map *map)
 		return (1);
 	}
 	fd = open(map_file, O_RDONLY);
-	read(fd, map->map_str, file_len);
+	bytes_read = read(fd, map->map_str, file_len);
+	if(bytes_read <= 0)
+		return(1);
 	close(fd);
 	map->map_str[file_len] = '\0';
 	map->map = ft_split(map->map_str, '\n');
