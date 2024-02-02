@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:13:29 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/26 13:37:28 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:21:23 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,11 @@ void	free_map(t_map *map)
 	map->map_str = NULL;
 	map->map = NULL;
 	free(map);
+}
+
+void free_game_struct(t_data *data)
+{
+	free_map(data->map);
+    free(data->player);
+    free(data);
 }
