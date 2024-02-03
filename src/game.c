@@ -79,7 +79,8 @@ int32_t	game_init(t_map *map)
 	data->height = height;
 	data->width = width;
 	put_map(mlx, data);
-	//mlx_loop_hook(mlx, exit_hook, mlx);
+	mlx_loop_hook(mlx, exit_hook, mlx);
+	mlx_loop_hook(mlx, player_hook, data);
     mlx_loop(mlx);
 	mlx_close_window(mlx);
     mlx_terminate(mlx);
