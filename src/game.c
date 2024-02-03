@@ -22,7 +22,6 @@ void load_textures_into_data(mlx_t *mlx, t_data *data)
 	data->wall = img;
 }
 
-
 t_data *prepare_data_struct(mlx_t *mlx, t_map *map)
 {
 	t_data *data;
@@ -35,6 +34,24 @@ t_data *prepare_data_struct(mlx_t *mlx, t_map *map)
 	return(data);
 }
 
+void put_background(mlx_t *mlx, t_data *data)
+{
+	size_t w;
+	size_t h;
+
+	w = 0;
+	h = 0;
+	while(h < HEIGHT)
+		{
+		while(w < WIDTH)
+		{
+			mlx_image_to_window(mlx, data->background, w, h);
+			w += 32;
+		}
+	w = 0;
+	h += 32;
+	}
+}
 
 int32_t	game_init(t_map *map)
 {
@@ -45,8 +62,8 @@ int32_t	game_init(t_map *map)
 	mlx = mlx_init(WIDTH, HEIGHT, "cool game", true);
 	if (!mlx)
 		exit(EXIT_FAILURE);
-	data = prepare_game_struct(mlx, map);
-	mlx_image_to_window(mlx, data->player, 100, 100);
+	data = prepare_data_struct(mlx, map);
+	put_background(mlx, data);
     mlx_loop(mlx);
 	mlx_close_window(mlx);
     mlx_terminate(mlx);

@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:20:20 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/02 16:22:18 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/03 13:31:05 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <unistd.h>
 #include <memory.h>
 
-#define WIDTH 1800
+#define WIDTH 2000
 #define HEIGHT 1000
 
 typedef struct s_map
@@ -35,7 +35,7 @@ typedef struct s_map
 }			t_map;
 
 typedef struct s_data
-{
+{	
 	t_map		*map;
 	mlx_image_t* player;
 	mlx_image_t* wall;
