@@ -34,23 +34,32 @@ t_data *prepare_data_struct(mlx_t *mlx, t_map *map)
 	return(data);
 }
 
-void put_background(mlx_t *mlx, t_data *data)
+void put_map(mlx_t *mlx, t_data *data)
 {
-	size_t w;
-	size_t h;
+	size_t x;
+	size_t y;
 
-	w = 0;
-	h = 0;
-	while(h < data->height)
-		{
-		while(w < data->width)
-		{
-			mlx_image_to_window(mlx, data->exit, w, h);
-			w += BLOCK_SIZE;
-		}
-	w = 0;
-	h += BLOCK_SIZE;
-	}
+	x = 0;
+    while (x < data->map->rows)
+    {
+        y = 0;
+        while (y < data->map->cols)
+        {
+            if (data->map->map[x][y] == '1')
+                mlx_image_to_window(mlx, data->wall, y * BLOCK_SIZE, x * BLOCK_SIZE);
+            else if (data->map->map[x][y] == 'P')
+                mlx_image_to_window(mlx, data->player, y * BLOCK_SIZE, x * BLOCK_SIZE);
+            else if (data->map->map[x][y] == 'C')
+                mlx_image_to_window(mlx, data->coin, y * BLOCK_SIZE, x * BLOCK_SIZE);
+            else if (data->map->map[x][y] == 'E')
+                mlx_image_to_window(mlx, data->exit, y * BLOCK_SIZE, x * BLOCK_SIZE);
+            else
+                mlx_image_to_window(mlx, data->background, y * BLOCK_SIZE, x * BLOCK_SIZE);
+
+            y += 1;
+        }
+        x += 1;
+    }
 }
 
 int32_t	game_init(t_map *map)
@@ -69,7 +78,7 @@ int32_t	game_init(t_map *map)
 	data = prepare_data_struct(mlx, map);
 	data->height = height;
 	data->width = width;
-	put_background(mlx, data);
+	put_map(mlx, data);
 	//mlx_loop_hook(mlx, exit_hook, mlx);
     mlx_loop(mlx);
 	mlx_close_window(mlx);
