@@ -1,27 +1,29 @@
 #include "../include/so_long.h"
 
-void load_textures(mlx_t *mlx, t_data *data)
+void load_textures_into_data(mlx_t *mlx, t_data *data)
 {
-	xpm_t *player_texture;
-	mlx_image_t *player;
+	mlx_texture_t *texture;
+	mlx_image_t *img;
 
-	player_texture = mlx_load_xpm42("textures/player.xpm42");
-	if (!player_texture)
-	{
-    	printf("xpm load failed!");
-		error();
-	}
-	player = mlx_texture_to_image(mlx, &player_texture->texture);
-	if (!player)
-	{
-    	printf("texture to image failed!");
-		error();
-	}
-	data->player = player;
+	texture = mlx_load_png("textures/background.png");
+	img = mlx_texture_to_image(mlx, texture);
+	data->background = img;
+	texture = mlx_load_png("textures/coin.png");
+	img = mlx_texture_to_image(mlx, texture);
+	data->coin = img;
+	texture = mlx_load_png("textures/exit.png");
+	img = mlx_texture_to_image(mlx, texture);
+	data->exit = img;
+	texture = mlx_load_png("textures/player.png");
+	img = mlx_texture_to_image(mlx, texture);
+	data->player = img;
+	texture = mlx_load_png("textures/wall.png");
+	img = mlx_texture_to_image(mlx, texture);
+	data->wall = img;
 }
 
 
-t_data *prepare_game_struct(mlx_t *mlx, t_map *map)
+t_data *prepare_data_struct(mlx_t *mlx, t_map *map)
 {
 	t_data *data;
 	
@@ -29,7 +31,7 @@ t_data *prepare_game_struct(mlx_t *mlx, t_map *map)
 	if(!data)
 		error();
 	data->map = map;
-	load_textures(mlx, data);
+	load_textures_into_data(mlx, data);
 	return(data);
 }
 

@@ -6,6 +6,9 @@ so_long
 lib/
 test*
 *working*
+textures/*xpm
+textures/480*
+MLX42.h
 
 # Prerequisites
 *.d
