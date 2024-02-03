@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:20:20 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/03 13:31:05 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/03 14:39:10 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@
 #include <unistd.h>
 #include <memory.h>
 
-#define WIDTH 2000
-#define HEIGHT 1000
+#define BLOCK_SIZE 32
 
 typedef struct s_map
 {
@@ -42,6 +41,8 @@ typedef struct s_data
 	mlx_image_t* coin;
 	mlx_image_t* exit;
 	mlx_image_t* background;
+	size_t	height;
+	size_t	width;
 }			t_data;
 
 t_map		*map_is_valid(char *map_file, t_map *data);
@@ -56,3 +57,4 @@ int			check_path(t_map *data);
 size_t		**allocate_2d_array(size_t rows, size_t cols);
 void		print_2d_array(size_t **array, size_t c);
 int32_t		game_init(t_map *map);
+void	exit_hook(void* param);

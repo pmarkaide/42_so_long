@@ -41,15 +41,15 @@ void put_background(mlx_t *mlx, t_data *data)
 
 	w = 0;
 	h = 0;
-	while(h < HEIGHT)
+	while(h < data->height)
 		{
-		while(w < WIDTH)
+		while(w < data->width)
 		{
-			mlx_image_to_window(mlx, data->background, w, h);
-			w += 32;
+			mlx_image_to_window(mlx, data->exit, w, h);
+			w += BLOCK_SIZE;
 		}
 	w = 0;
-	h += 32;
+	h += BLOCK_SIZE;
 	}
 }
 
@@ -57,13 +57,20 @@ int32_t	game_init(t_map *map)
 {
 	mlx_t    *mlx;
 	t_data	*data;
+	size_t width;
+	size_t height;
 
-	mlx_set_setting(MLX_STRETCH_IMAGE, 1);	
-	mlx = mlx_init(WIDTH, HEIGHT, "cool game", true);
+	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
+	width = map->cols * BLOCK_SIZE;
+	height = map->rows * BLOCK_SIZE;
+	mlx = mlx_init(width, height, "cool game", true);
 	if (!mlx)
 		exit(EXIT_FAILURE);
 	data = prepare_data_struct(mlx, map);
+	data->height = height;
+	data->width = width;
 	put_background(mlx, data);
+	//mlx_loop_hook(mlx, exit_hook, mlx);
     mlx_loop(mlx);
 	mlx_close_window(mlx);
     mlx_terminate(mlx);
