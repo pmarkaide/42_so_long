@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:15:01 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/02 10:48:56 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/05 19:31:26 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	flood_fill(int x, int y, t_map *map)
 // starting position calculation
 // check C and E against visited
 
-void	get_starting_point(t_map *map)
+void	get_start_and_exit_points(t_map *map)
 {
 	size_t	i;
 	size_t	j;
@@ -55,7 +55,11 @@ void	get_starting_point(t_map *map)
 			{
 				map->start_x = i;
 				map->start_y = j;
-				return ;
+			}
+			if (map->map[i][j] == 'E')
+			{
+				map->exit_x = i;
+				map->exit_y = j;
 			}
 			j++;
 		}
@@ -70,7 +74,7 @@ int	check_path(t_map *map)
 
 	i = 0;
 	j = 0;
-	get_starting_point(map);
+	get_start_and_exit_points(map);
 	flood_fill(map->start_x, map->start_y, map);
 	while (i < map->rows)
 	{

@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 10:39:40 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/05 17:44:36 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/05 19:39:05 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,8 @@ int32_t	game_init(t_map *map)
 	data->width = width;
 	data->mlx = mlx;
 	put_map(mlx, data);
-	mlx_loop_hook(mlx, exit_hook, mlx);
+	mlx_loop_hook(mlx, quit_hook, data);
+	mlx_loop_hook(mlx, exit_hook, data);
 	mlx_key_hook(mlx,  (mlx_keyfunc)player_hook, data);
     mlx_loop(mlx);
 	mlx_close_window(mlx);

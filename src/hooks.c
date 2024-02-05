@@ -6,22 +6,34 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:17:12 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/05 17:47:38 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/05 19:38:04 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	exit_hook(void* param)
+void	quit_hook(void* param)
 {
-	mlx_t* mlx;
+	t_data	*data;
 
-	mlx = param;
-	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(mlx);
+	data = param;
+	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(data->mlx);
 }
 
-int is_valid_move(t_data *data, int x, int y)
+void	exit_hook(void* param)
+{
+	t_data	*data;
+
+	data = param;
+	if(data->pos_x == data->map->exit_x && data->pos_y == data->map->exit_y)
+	{
+		if(data->map->coins == 0)
+			mlx_close_window(data->mlx);
+	}
+}
+
+int	is_valid_move(t_data *data, int x, int y)
 {
     if(data->map->map[x][y] == '1')
 		return(0);
@@ -32,7 +44,8 @@ int is_valid_move(t_data *data, int x, int y)
 	return(1);
 }
 
-void move_player(t_data *data, int dx, int dy) {
+void move_player(t_data *data, int dx, int dy)
+{
     int new_x = data->pos_x + dx;
     int new_y = data->pos_y + dy;
 
@@ -49,6 +62,7 @@ void move_player(t_data *data, int dx, int dy) {
 				data->map->start_y = new_y;
 				new_player_image(data->mlx, data);
 				put_map(data->mlx, data);
+				data->map->coins -= 1;
 			}
 	}
 }

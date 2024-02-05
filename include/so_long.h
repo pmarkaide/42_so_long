@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:20:20 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/05 18:43:46 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/05 19:39:24 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_map
 	size_t	coins;
 	size_t	start_x;
 	size_t	start_y;
+	size_t	exit_x;
+	size_t	exit_y;
 	size_t	**visited;
 }			t_map;
 
@@ -61,7 +63,8 @@ int			check_path(t_map *data);
 size_t		**allocate_2d_array(size_t rows, size_t cols);
 void		print_2d_array(size_t **array, size_t c);
 int32_t		game_init(t_map *map);
-void		exit_hook(void* param);
+void		quit_hook(void* param);
 void		player_hook(mlx_key_data_t keydata, t_data *data);
 void		put_map(mlx_t *mlx, t_data *data);
 void		new_player_image(mlx_t *mlx, t_data *data);
+void		exit_hook(void* param);
