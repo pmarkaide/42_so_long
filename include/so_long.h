@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:20:20 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/05 12:17:33 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:28:50 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_data
 	mlx_image_t* background;
 	size_t	height;
 	size_t	width;
+	size_t	pos_x;
+	size_t	pos_y;
 }			t_data;
 
 t_map		*map_is_valid(char *map_file, t_map *data);
