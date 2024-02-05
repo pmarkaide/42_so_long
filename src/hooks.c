@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:17:12 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/05 16:26:22 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:47:38 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,15 @@ void move_player(t_data *data, int dx, int dy) {
 		data->player->instances[0].y = new_x * BLOCK_SIZE;
 		data->pos_x = new_x;
 		data->pos_y = new_y;
-	}	
+		if(data->map->map[new_x][new_y] == 'C')
+			{
+				data->map->map[new_x][new_y] = '0';
+				data->map->start_x = new_x;
+				data->map->start_y = new_y;
+				new_player_image(data->mlx, data);
+				put_map(data->mlx, data);
+			}
+	}
 }
 
 void player_hook(mlx_key_data_t keydata, t_data *data) {

@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 10:39:40 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/05 15:34:15 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:44:36 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,17 @@ t_data *prepare_data_struct(mlx_t *mlx, t_map *map)
 	data->pos_y =  data->map->start_y;
 	load_textures_into_data(mlx, data);
 	return(data);
+}
+
+void new_player_image(mlx_t *mlx, t_data *data)
+{
+	mlx_texture_t *texture;
+	mlx_image_t *img;
+
+	mlx_delete_image(data->mlx, data->player);
+	texture = mlx_load_png("textures/player.png");
+	img = mlx_texture_to_image(mlx, texture);
+	data->player = img;
 }
 
 void put_map(mlx_t *mlx, t_data *data)
