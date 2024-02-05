@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:20:20 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/05 17:44:53 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:43:46 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_map
 	char	**map;
 	size_t	rows;
 	size_t	cols;
+	size_t	coins;
 	size_t	start_x;
 	size_t	start_y;
 	size_t	**visited;

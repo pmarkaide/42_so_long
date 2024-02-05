@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/02 14:58:34 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:44:35 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,12 @@ int	check_chars(t_map *map)
 	size_t	i;
 	size_t	p;
 	size_t	e;
+	size_t c;
 
 	i = 0;
 	p = 0;
 	e = 0;
+	c = 0;
 	while (map->map_str[i])
 	{
 		if (ft_strchr("PEC10\n", map->map_str[i]) == NULL)
@@ -82,10 +84,15 @@ int	check_chars(t_map *map)
 			p++;
 		if (ft_strchr("E", map->map_str[i]))
 			e++;
+		if (ft_strchr("C", map->map_str[i]))
+			c++;
 		i++;
 	}
 	if (p > 1 || e > 1)
 		return (error_1("Error\nRepeated characters\n"));
+	if (c == 0)
+		return (error_1("Error\nNo coins found\n"));
+	map->coins = c;
 	return (0);
 }
 
