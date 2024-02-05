@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:20:20 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/03 16:47:29 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:17:33 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,4 @@ size_t		**allocate_2d_array(size_t rows, size_t cols);
 void		print_2d_array(size_t **array, size_t c);
 int32_t		game_init(t_map *map);
 void		exit_hook(void* param);
-void		player_hook(void *param);
+void		player_hook(mlx_key_data_t keydata, t_data *data);

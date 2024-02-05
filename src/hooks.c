@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:17:12 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/05 10:58:35 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:34:52 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,14 @@ void	exit_hook(void* param)
 		mlx_close_window(mlx);
 }
 
-void	player_hook(void *param)
+void	player_hook(mlx_key_data_t keydata, t_data *data)
 {
-	t_data *data;
-	
-	data = param;
- 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-        data->player->instances[0].x -= 10;
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
-        data->player->instances[0].x += 10;
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_DOWN))
-        data->player->instances[0].y -= 10;
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_UP))
-        data->player->instances[0].y += 10;
+ 	if (keydata.key == MLX_KEY_RIGHT)	
+        data->player->instances[0].x += 32;
+	if (keydata.key == MLX_KEY_LEFT)
+        data->player->instances[0].x -= 32;
+	if (keydata.key == MLX_KEY_UP)
+        data->player->instances[0].y -= 32;
+	if (keydata.key == MLX_KEY_DOWN)
+    	data->player->instances[0].y += 32;
 }
