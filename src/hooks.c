@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:17:12 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/05 12:34:52 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:27:53 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	exit_hook(void* param)
 
 void	player_hook(mlx_key_data_t keydata, t_data *data)
 {
- 	if (keydata.key == MLX_KEY_RIGHT)	
+ 	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
         data->player->instances[0].x += 32;
-	if (keydata.key == MLX_KEY_LEFT)
+	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
         data->player->instances[0].x -= 32;
-	if (keydata.key == MLX_KEY_UP)
+	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
         data->player->instances[0].y -= 32;
-	if (keydata.key == MLX_KEY_DOWN)
+	if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
     	data->player->instances[0].y += 32;
 }
