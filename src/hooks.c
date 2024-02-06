@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:17:12 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/05 19:38:04 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:03:24 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ void move_player(t_data *data, int dx, int dy)
 
 void player_hook(mlx_key_data_t keydata, t_data *data) {
     if (keydata.action == MLX_PRESS) {
-        if (keydata.key == MLX_KEY_RIGHT)
+        if (keydata.key == MLX_KEY_D)
             move_player(data, 0, 1);
-       	else if (keydata.key == MLX_KEY_LEFT)
+       	else if (keydata.key == MLX_KEY_A)
             move_player(data, 0, -1);
-        else if (keydata.key == MLX_KEY_UP)
+        else if (keydata.key == MLX_KEY_W)
         	move_player(data, -1, 0);
-        else if (keydata.key == MLX_KEY_DOWN)
+        else if (keydata.key == MLX_KEY_S)
             move_player(data, 1, 0);
     }
 }

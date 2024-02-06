@@ -6,7 +6,7 @@
 #    By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 11:10:37 by pmarkaid          #+#    #+#              #
-#    Updated: 2024/02/03 14:20:21 by pmarkaid         ###   ########.fr        #
+#    Updated: 2024/02/06 09:49:13 by pmarkaid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,4 +90,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re libmlx
+.PHONY: all clean fclean re

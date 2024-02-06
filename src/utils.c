@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:12:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/22 12:32:13 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/06 10:21:41 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,8 @@ void	print_2d_array(size_t **array, size_t c)
 	{
 		j = 0;
 		while (j < cols - 1)
-			printf("%zu ", array[i][j++]);
-		printf("\n");
+			ft_printf("%zu ", array[i][j++]);
+		ft_printf("\n");
 		i++;
 	}
 }
