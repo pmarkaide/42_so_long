@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:20:20 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/05 19:39:24 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/07 10:30:43 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_data
 	size_t	width;
 	size_t	pos_x;
 	size_t	pos_y;
+	size_t	moves;
 }			t_data;
 
 t_map		*map_is_valid(char *map_file, t_map *data);

@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:17:12 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/06 15:03:24 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/07 10:37:03 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void move_player(t_data *data, int dx, int dy)
 		data->player->instances[0].y = new_x * BLOCK_SIZE;
 		data->pos_x = new_x;
 		data->pos_y = new_y;
+		data->moves += 1;
+		ft_printf("Number of movements: %d\n", data->moves);
 		if(data->map->map[new_x][new_y] == 'C')
 			{
 				data->map->map[new_x][new_y] = '0';
