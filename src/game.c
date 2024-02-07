@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 10:39:40 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/07 10:31:22 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:21:19 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,13 @@ t_data *prepare_data_struct(mlx_t *mlx, t_map *map)
 	
 	data = malloc(sizeof(t_data));
 	if(!data)
-		error();
+	{
+		ft_printf("Error\nError in Malloc");
+		mlx_close_window(mlx);
+    	mlx_terminate(mlx);
+		free_map(map);
+		exit(0);
+	}
 	data->map = map;
 	data->pos_x =  data->map->start_x;
 	data->pos_y =  data->map->start_y;
@@ -96,9 +102,7 @@ int32_t	game_init(t_map *map)
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	width = map->cols * BLOCK_SIZE;
 	height = map->rows * BLOCK_SIZE;
-	mlx = mlx_init(width, height, "cool game", true);
-	if (!mlx)
-		exit(EXIT_FAILURE);
+	mlx = mlx_init(width, height, "Pac Man", true);
 	data = prepare_data_struct(mlx, map);
 	data->height = height;
 	data->width = width;
@@ -111,5 +115,5 @@ int32_t	game_init(t_map *map)
 	mlx_close_window(mlx);
     mlx_terminate(mlx);
 	free_game_struct(data);
-	return (EXIT_SUCCESS);
+	return (0);
 }

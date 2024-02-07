@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:25:34 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/01/26 13:58:23 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/07 12:21:55 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	error_1(const char *error_message)
 	return (1);
 }
 
-void error(void)
+char	*error_N(const char *error_message)
 {
-	puts(mlx_strerror(mlx_errno));
-	exit(EXIT_FAILURE);
+	ft_printf(error_message);
+	return (NULL);
 }

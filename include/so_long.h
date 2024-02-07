@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:20:20 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/07 10:30:43 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:16:00 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ size_t		count_rows_in_array(char **map);
 void		free_map(t_map *data);
 void		free_game_struct(t_data *data);
 int			error_1(const char *error_message);
-void		error(void);
+char		*error_N(const char *error_message);
 size_t		get_file_length_in_bytes(char *map_file);
 int			file_is_valid(char *map_file);
 int			check_path(t_map *data);

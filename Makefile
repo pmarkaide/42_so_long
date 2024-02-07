@@ -6,7 +6,7 @@
 #    By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 11:10:37 by pmarkaid          #+#    #+#              #
-#    Updated: 2024/02/06 09:49:13 by pmarkaid         ###   ########.fr        #
+#    Updated: 2024/02/07 11:12:58 by pmarkaid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 MLX42_REPO = https://github.com/codam-coding-college/MLX42.git
 MLX42_DIR = $(LIB_DIR)/MLX42
-MLX42_LIBS = $(MLX42_DIR)/build/libmlx42.a -L $(shell brew --prefix glfw)/lib -lglfw -ldl -pthread -lm
+MLX42_LIBS = $(MLX42_DIR)/build/libmlx42.a -L ~/.brew/opt/glfw/lib -lglfw -ldl -pthread -lm
 MLX42 = $(MLX42_DIR)/build/libmlx42.a
 
 OBJS = $(SRCS:.c=.o)
