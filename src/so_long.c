@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:14:46 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/08 11:35:18 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:45:40 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return(error_1("\nERROR! Usage:\t./so_long maps/valid_0.ber\n"));
 	map_is_valid(argv[1], &map);
-	if (map.map_str != NULL)
-		game_init(map);
+	game_init(map);
 	return (0);
 }

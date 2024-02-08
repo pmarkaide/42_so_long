@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:17:12 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/07 11:37:28 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:52:52 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	exit_hook(void* param)
 	if(data->pos_x == data->map->exit_x && data->pos_y == data->map->exit_y)
 	{
 		if(data->map->coins == 0)
-			mlx_close_window(data->mlx);
+			free_game_and_good_exit(data);
 	}
 }
 

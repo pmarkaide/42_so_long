@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 10:39:40 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/08 11:46:21 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:55:17 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,7 @@ t_data *prepare_data_struct(mlx_t *mlx, t_map *map)
 	
 	data = malloc(sizeof(t_data));
 	if(!data)
-	{
-		ft_printf("Error\nError in Malloc");
-		mlx_close_window(mlx);
-    	mlx_terminate(mlx);
-		free_map(map);
-		exit(0);
-	}
+		free_game_and_bad_exit(data, "Malloc failed\n");
 	data->map = map;
 	data->pos_x =  data->map->start_x;
 	data->pos_y =  data->map->start_y;
@@ -112,6 +106,5 @@ int32_t	game_init(t_map map)
 	mlx_loop_hook(mlx, exit_hook, data);
 	mlx_key_hook(mlx,  (mlx_keyfunc)player_hook, data);
     mlx_loop(mlx);
-	free_game_struct_and_exit(data);
 	return (0);
 }

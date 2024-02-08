@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 15:25:34 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/08 15:35:19 by pmarkaid         ###   ########.fr       */
+/*   Created: 2024/02/08 11:55:48 by pmarkaid          #+#    #+#             */
+/*   Updated: 2024/02/08 11:55:58 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#ifndef COLORS_H
 
-int	error_1(const char *error_msg)
-{
-	ft_printf("%sError\n%s%s\n", RED, DEFAULT, error_msg);
-	return (1);
-}
+# define COLORS_H
 
-char	*error_N(const char *error_msg)
-{
-	ft_printf("%sError\n%s%s\n", RED, DEFAULT, error_msg);
-	return (NULL);
-}
+/* Color codes for printf  */
+# define DEFAULT "\033[0;39m"
+# define GRAY "\033[0;90m"
+# define RED "\033[0;91m"
+# define GREEN "\033[0;92m"
+# define YELLOW "\033[0;93m"
+# define BLUE "\033[0;94m"
+# define MAGENTA "\033[0;95m"
+# define CYAN "\033[0;96m"
+# define WHITE "\033[0;97m"
 
-void	exit_1(const char *error_msg)
-{
-	ft_printf("%sError\n%s%s\n", RED, DEFAULT, error_msg);
-	exit (1);
-}
+#endif

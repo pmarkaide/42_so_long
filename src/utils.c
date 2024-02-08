@@ -6,25 +6,34 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:12:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/07 12:13:14 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:37:18 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int	file_is_valid(char *map_file)
+void	file_is_valid(char *map_file)
 {
 	char	*extension;
 	int		fd;
+	char	buffer[1];	
+	size_t	bytes_read;
+	
 
+	bytes_read = 0;
 	extension = strrchr(map_file, '.');
 	if (extension == NULL || strcmp(extension, ".ber") != 0)
-		return(error_1("Error\nInvalid file extension. Expected '.ber'.\n"));
+		exit_1("Invalid file extension. Expected: '.ber'");
 	fd = open(map_file, O_RDONLY);
 	if (fd == -1)
-		return(error_1("Error\nCannot open the file\n"));
+		exit_1("Cannot open the file");
+	else
+	{
+		bytes_read = read(fd, buffer, 1);
+		if (bytes_read == 0)
+			exit_1("File is empty");
+	}
 	close(fd);
-	return (0);
 }
 
 size_t	get_file_length_in_bytes(char *map_file)
@@ -38,10 +47,7 @@ size_t	get_file_length_in_bytes(char *map_file)
 	while (read(fd, buffer, 1))
 		bytes_read++;
 	close(fd);
-	if (bytes_read == 0)
-		return(error_1("Error\nFile is empty\n"));
-	else
-		return (bytes_read);
+	return (bytes_read);
 }
 
 size_t	**allocate_2d_array(size_t rows, size_t cols)
