@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:20:20 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/07 16:16:00 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/08 11:45:53 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ typedef struct s_data
 	size_t	moves;
 }			t_data;
 
-t_map		*map_is_valid(char *map_file, t_map *data);
+void 		map_is_valid(char *map_file, t_map *map);
 size_t		count_rows_in_array(char **map);
 void		free_map(t_map *data);
-void		free_game_struct(t_data *data);
+void		free_game_struct_and_exit(t_data *data);
 int			error_1(const char *error_message);
 char		*error_N(const char *error_message);
 size_t		get_file_length_in_bytes(char *map_file);
@@ -63,7 +63,7 @@ int			file_is_valid(char *map_file);
 int			check_path(t_map *data);
 size_t		**allocate_2d_array(size_t rows, size_t cols);
 void		print_2d_array(size_t **array, size_t c);
-int32_t		game_init(t_map *map);
+int32_t		game_init(t_map map);
 void		quit_hook(void* param);
 void		player_hook(mlx_key_data_t keydata, t_data *data);
 void		put_map(mlx_t *mlx, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 10:39:40 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/07 16:21:19 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/08 11:46:21 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void put_map(mlx_t *mlx, t_data *data)
 	mlx_image_to_window(mlx, data->player, data->map->start_y * BLOCK_SIZE, data->map->start_x * BLOCK_SIZE);
 }
 
-int32_t	game_init(t_map *map)
+int32_t	game_init(t_map map)
 {
 	mlx_t    *mlx;
 	t_data	*data;
@@ -100,10 +100,10 @@ int32_t	game_init(t_map *map)
 	size_t height;
 
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
-	width = map->cols * BLOCK_SIZE;
-	height = map->rows * BLOCK_SIZE;
+	width = map.cols * BLOCK_SIZE;
+	height = map.rows * BLOCK_SIZE;
 	mlx = mlx_init(width, height, "Pac Man", true);
-	data = prepare_data_struct(mlx, map);
+	data = prepare_data_struct(mlx, &map);
 	data->height = height;
 	data->width = width;
 	data->mlx = mlx;
@@ -112,8 +112,6 @@ int32_t	game_init(t_map *map)
 	mlx_loop_hook(mlx, exit_hook, data);
 	mlx_key_hook(mlx,  (mlx_keyfunc)player_hook, data);
     mlx_loop(mlx);
-	mlx_close_window(mlx);
-    mlx_terminate(mlx);
-	free_game_struct(data);
+	free_game_struct_and_exit(data);
 	return (0);
 }

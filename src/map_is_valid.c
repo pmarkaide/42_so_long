@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/05 19:36:00 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/08 11:36:25 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	check_chars(t_map *map)
 	return (0);
 }
 
-t_map	*map_is_valid(char *map_file, t_map *map)
+void map_is_valid(char *map_file, t_map *map)
 {
 	int	valid;
 
@@ -108,5 +108,4 @@ t_map	*map_is_valid(char *map_file, t_map *map)
 	valid += check_path(map);
 	if(valid > 0)
 		map->map_str = NULL;
-	return (map);
 }
