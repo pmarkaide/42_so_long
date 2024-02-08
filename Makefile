@@ -6,7 +6,7 @@
 #    By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 11:10:37 by pmarkaid          #+#    #+#              #
-#    Updated: 2024/02/07 11:12:58 by pmarkaid         ###   ########.fr        #
+#    Updated: 2024/02/08 17:27:55 by pmarkaid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ MLX42_INCLUDE = -I $(MLX42_DIR)/include
 TEST_INCLUDE = -I test/unity/src/ -I test/
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast
+CFLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast -fsanitize=address -g -static-libsan
 
 all: $(LIBFT) $(MLX42) $(NAME)
 
