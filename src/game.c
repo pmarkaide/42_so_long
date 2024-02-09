@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 10:39:40 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/08 17:33:16 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:10:26 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,13 @@ void load_textures_into_data(t_data *data)
 	data->wall= load_png_into_image(data, "textures/wall.png");
 }
 
-t_data *prepare_data_struct(t_map *map, mlx_t *mlx)
+void prepare_data_struct(t_data *data, t_map *map, mlx_t *mlx)
 {
-	t_data *data;
-
-	data = malloc(sizeof(t_data));
-	if(!data)
-		free_game_and_bad_exit(data, "Malloc failed");
-	ft_bzero(&(*data), sizeof(*data));
 	data->map = map;
 	data->mlx = mlx;
 	data->pos_x =  data->map->start_x;
 	data->pos_y =  data->map->start_y;
 	load_textures_into_data(data);
-	return(data);
 }
 
 void new_player_image(t_data *data)
@@ -87,7 +80,7 @@ void put_map(mlx_t *mlx, t_data *data)
 int32_t	game_init(t_map map)
 {
 	mlx_t    *mlx;
-	t_data	*data;
+	t_data	data;
 	size_t width;
 	size_t height;
 
@@ -97,13 +90,14 @@ int32_t	game_init(t_map map)
 	mlx = mlx_init(width, height, "Pac Man", true);
 	if(!mlx)
 		free_map_and_exit(&map, "mlx initiation failed");
-	data = prepare_data_struct(&map, mlx);
-	data->height = height;
-	data->width = width;
-	put_map(mlx, data);
-	mlx_loop_hook(mlx, quit_hook, data);
-	mlx_loop_hook(mlx, exit_hook, data);
-	mlx_key_hook(mlx,  (mlx_keyfunc)player_hook, data);
+	ft_bzero(&data, sizeof(data));
+	prepare_data_struct(&data, &map, mlx);
+	data.height = height;
+	data.width = width;
+	put_map(mlx, &data);
+	mlx_loop_hook(mlx, quit_hook, &data);
+	mlx_loop_hook(mlx, exit_hook, &data);
+	mlx_key_hook(mlx,  (mlx_keyfunc)player_hook, &data);
 	mlx_loop(mlx);
 	return (0);
 }
