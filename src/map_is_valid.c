@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/09 14:07:13 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:26:01 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ void	load_map(char *map_file, t_map *map)
 	read(fd, map->map_str, file_len);
 	close(fd);
 	map->map_str[file_len] = '\0';
+	if(two_consecutive_newlines(map->map_str))
+		free_map_and_exit(map, "Empty line in map");
 	map->map = ft_split(map->map_str, '\n');
-	if(!map->map[0])
-		free_map_and_exit(map, "Map seem to be empty");
+	if(!map->map[0] || map->map == NULL)
+		free_map_and_exit(map, "Map layout not correct");
 	map->rows = count_rows_in_array(map->map);
 	map->cols = ft_strlen(map->map[0]);
 	map->visited = allocate_2d_array(map->rows, map->cols);

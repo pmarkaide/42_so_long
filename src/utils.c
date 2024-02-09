@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:12:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/09 13:46:09 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:15:18 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,15 @@ void	print_2d_array(char **array)
 		ft_printf("\n");
 		i++;
 	}
+}
+
+int two_consecutive_newlines(char *str)
+{
+	while (*str)
+    {
+        if (strchr(str, '\n') && strchr(str + 1, '\n'))
+			return 1;
+        str++;
+    }
+    return 0;
 }
