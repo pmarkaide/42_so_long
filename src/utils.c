@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:12:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/09 16:15:18 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:53:21 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,48 +73,17 @@ size_t	**allocate_2d_array(size_t rows, size_t cols)
 	return (array);
 }
 
-size_t	get_rows(char **array)
+int	two_consecutive_newlines(char *str)
 {
-	size_t	rows;
+	char	prev;
 
-	rows = 0;
-	while (array[rows] != NULL)
-		rows++;
-	return (rows);
-}
-
-size_t	get_cols(char **array)
-{
-	size_t	cols;
-
-	cols = 0;
-	while (array[0][cols] != '\0')
-		cols++;
-	return (cols);
-}
-
-void	print_2d_array(char **array)
-{
-	size_t	rows;
-	size_t	i;
-
-	rows = get_rows(array);
-	i = 0;
-	while (i < rows)
-	{
-		ft_printf("%s", array[i]);
-		ft_printf("\n");
-		i++;
-	}
-}
-
-int two_consecutive_newlines(char *str)
-{
+	prev = '\0';
 	while (*str)
-    {
-        if (strchr(str, '\n') && strchr(str + 1, '\n'))
-			return 1;
-        str++;
-    }
-    return 0;
+	{
+		if (*str == '\n' && prev == '\n')
+			return (1);
+		prev = *str;
+		str++;
+	}
+	return (0);
 }
