@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:13:29 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/08 15:54:22 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/09 12:27:47 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	 free_map_and_exit(t_map *map, char *error_msg)
 {
 	free_map(map);
 	ft_printf("%sError\n%s%s\n", RED, DEFAULT, error_msg);
-	exit(0);
+	exit(1);
 }
 
 void	free_game(t_data *data)
@@ -62,7 +62,7 @@ void	 free_game_and_bad_exit(t_data *data, char *error_msg)
 {
 	free_game(data);
 	ft_printf("%sError\n%s%s\n", RED, DEFAULT, error_msg);
-	exit (0);
+	exit (1);
 }
 
 void	 free_game_and_good_exit(t_data *data)

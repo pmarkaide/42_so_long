@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/08 15:56:30 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:07:13 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	load_map(char *map_file, t_map *map)
 	close(fd);
 	map->map_str[file_len] = '\0';
 	map->map = ft_split(map->map_str, '\n');
+	if(!map->map[0])
+		free_map_and_exit(map, "Map seem to be empty");
 	map->rows = count_rows_in_array(map->map);
 	map->cols = ft_strlen(map->map[0]);
 	map->visited = allocate_2d_array(map->rows, map->cols);
@@ -79,10 +81,8 @@ void	check_chars(t_map *map)
 			map->coins++;
 		i++;
 	}
-	if (p > 1 || e > 1)
-		free_map_and_exit(map, "Repeated characters");
-	if (map->coins == 0)
-		free_map_and_exit(map, "No coins found");
+	if (p != 1 || e != 1 || map->coins == 0)
+		free_map_and_exit(map, "Map need 1 exit, 1 player and >0 coins");
 }
 
 void map_is_valid(char *map_file, t_map *map)
