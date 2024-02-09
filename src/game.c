@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 10:39:40 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/09 17:34:22 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:16:01 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,24 @@ mlx_image_t	*load_png_into_image(t_data *data, char *file)
 	return(img);
 }
 
-void load_textures_into_data(t_data *data)
+void prepare_data_struct(t_data *data, t_map *map)
 {
+	ft_bzero(data, sizeof(*data));
+	data->map = map;
+	data->pos_x =  data->map->start_x;
+	data->pos_y =  data->map->start_y;
+	data->width = data->map->cols * BLOCK_SIZE;
+	data->height = data->map->rows * BLOCK_SIZE;
+}
+
+void load_images_into_struct(t_data *data, mlx_t	*mlx)
+{
+	data->mlx = mlx;
 	data->background = load_png_into_image(data, "textures/background.png");
 	data->coin =  load_png_into_image(data, "textures/coin.png");
 	data->exit =  load_png_into_image(data, "textures/exit.png");
 	data->player = load_png_into_image(data, "textures/player.png");
 	data->wall= load_png_into_image(data, "textures/wall.png");
-}
-
-void prepare_data_struct(t_data *data, t_map *map, mlx_t *mlx)
-{
-	data->map = map;
-	data->mlx = mlx;
-	data->pos_x =  data->map->start_x;
-	data->pos_y =  data->map->start_y;
-	load_textures_into_data(data);
 }
 
 void new_player_image(t_data *data)
@@ -89,19 +91,13 @@ int32_t	game_init(t_map map)
 {
 	mlx_t	*mlx;
 	t_data	data;
-	size_t width;
-	size_t height;
 
+	prepare_data_struct(&data, &map);
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
-	width = map.cols * BLOCK_SIZE;
-	height = map.rows * BLOCK_SIZE;
-	mlx = mlx_init(width, height, "Pac Man", true);
+	mlx = mlx_init(data.width, data.height, "Pac Man", true);
 	if(!mlx)
-		free_map_and_exit(&map, "mlx initiation failed");
-	ft_bzero(&data, sizeof(data));
-	prepare_data_struct(&data, &map, mlx);
-	data.height = height;
-	data.width = width;
+		free_game_and_bad_exit(&data, "mlx initiation failed");
+	load_images_into_struct(&data, mlx);
 	render_map(&data);
 	mlx_loop_hook(mlx, quit_hook, &data);
 	mlx_loop_hook(mlx, exit_hook, &data);
