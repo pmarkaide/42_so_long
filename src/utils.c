@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:12:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/08 15:37:18 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/09 13:46:09 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ void	file_is_valid(char *map_file)
 {
 	char	*extension;
 	int		fd;
-	char	buffer[1];	
+	char	buffer[1];
 	size_t	bytes_read;
-	
 
 	bytes_read = 0;
 	extension = strrchr(map_file, '.');
@@ -56,20 +55,25 @@ size_t	**allocate_2d_array(size_t rows, size_t cols)
 	size_t	i;
 	size_t	j;
 
-	array = malloc(rows * sizeof(size_t *));
+	array = malloc((rows + 1) * sizeof(size_t *));
+	if (array == NULL)
+		return (NULL);
 	i = 0;
 	while (i < rows)
 	{
 		array[i] = malloc(cols * sizeof(size_t));
+		if (array == NULL)
+			return (NULL);
 		j = 0;
 		while (j < cols)
 			array[i][j++] = 0;
 		i++;
 	}
+	array[rows] = NULL;
 	return (array);
 }
 
-size_t	get_rows(size_t **array)
+size_t	get_rows(char **array)
 {
 	size_t	rows;
 
@@ -79,31 +83,26 @@ size_t	get_rows(size_t **array)
 	return (rows);
 }
 
-size_t	get_cols(size_t **array, size_t c)
+size_t	get_cols(char **array)
 {
 	size_t	cols;
 
 	cols = 0;
-	while (array[0][cols] == c)
+	while (array[0][cols] != '\0')
 		cols++;
 	return (cols);
 }
 
-void	print_2d_array(size_t **array, size_t c)
+void	print_2d_array(char **array)
 {
 	size_t	rows;
-	size_t	cols;
 	size_t	i;
-	size_t	j;
 
 	rows = get_rows(array);
-	cols = get_cols(array, c);
 	i = 0;
 	while (i < rows)
 	{
-		j = 0;
-		while (j < cols - 1)
-			ft_printf("%zu ", array[i][j++]);
+		ft_printf("%s", array[i]);
 		ft_printf("\n");
 		i++;
 	}
