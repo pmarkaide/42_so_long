@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/09 16:26:01 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/09 17:24:52 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	load_map(char *map_file, t_map *map)
 	read(fd, map->map_str, file_len);
 	close(fd);
 	map->map_str[file_len] = '\0';
+	if(map->map_str[file_len - 1] == '\n')
+		free_map_and_exit(map, "Empty line in map");
 	if(two_consecutive_newlines(map->map_str))
 		free_map_and_exit(map, "Empty line in map");
 	map->map = ft_split(map->map_str, '\n');
@@ -89,6 +91,7 @@ void	check_chars(t_map *map)
 
 void map_is_valid(char *map_file, t_map *map)
 {
+	ft_bzero(map, sizeof(*map));
 	file_is_valid(map_file);
 	load_map(map_file, map);
 	check_layout(map);
