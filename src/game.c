@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 10:39:40 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/09 14:10:26 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/09 17:34:22 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,34 +52,42 @@ void new_player_image(t_data *data)
 	data->player = load_png_into_image(data, "textures/player.png");
 }
 
-void put_map(mlx_t *mlx, t_data *data)
+void render_block(t_data *data, mlx_image_t *img, size_t y, size_t x)
+{
+	int exit_code;
+	exit_code = mlx_image_to_window(data->mlx, img, y * BLOCK_SIZE, x * BLOCK_SIZE);
+	if(exit_code == -1)
+		free_game_and_bad_exit(data, "Render problems");
+}
+
+void render_map(t_data *data)
 {
 	size_t x;
 	size_t y;
 
 	x = 0;
-    while (x < data->map->rows)
-    {
-        y = 0;
-        while (y < data->map->cols)
-        {
-			mlx_image_to_window(mlx, data->background, y * BLOCK_SIZE, x * BLOCK_SIZE);
-            if (data->map->map[x][y] == '1')
-                mlx_image_to_window(mlx, data->wall, y * BLOCK_SIZE, x * BLOCK_SIZE);        
-            else if (data->map->map[x][y] == 'C')
-                mlx_image_to_window(mlx, data->coin, y * BLOCK_SIZE, x * BLOCK_SIZE);
-            else if (data->map->map[x][y] == 'E')
-                mlx_image_to_window(mlx, data->exit, y * BLOCK_SIZE, x * BLOCK_SIZE);
-            y += 1;
-        }
-        x += 1;
-    }
-	mlx_image_to_window(mlx, data->player, data->map->start_y * BLOCK_SIZE, data->map->start_x * BLOCK_SIZE);
+	while (x < data->map->rows)
+	{
+		y = 0;
+		while (y < data->map->cols)
+		{
+			render_block(data, data->background, y, x);
+			if (data->map->map[x][y] == '1')
+				render_block(data, data->wall, y, x);
+			else if (data->map->map[x][y] == 'C')
+				render_block(data, data->coin, y, x);
+			else if (data->map->map[x][y] == 'E')
+				render_block(data, data->exit, y, x);
+			y += 1;
+		}
+		x += 1;
+	}
+	render_block(data, data->player, data->map->start_y, data->map->start_x);
 }
 
 int32_t	game_init(t_map map)
 {
-	mlx_t    *mlx;
+	mlx_t	*mlx;
 	t_data	data;
 	size_t width;
 	size_t height;
@@ -94,7 +102,7 @@ int32_t	game_init(t_map map)
 	prepare_data_struct(&data, &map, mlx);
 	data.height = height;
 	data.width = width;
-	put_map(mlx, &data);
+	render_map(&data);
 	mlx_loop_hook(mlx, quit_hook, &data);
 	mlx_loop_hook(mlx, exit_hook, &data);
 	mlx_key_hook(mlx,  (mlx_keyfunc)player_hook, &data);

@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:17:12 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/08 16:42:59 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/09 17:31:24 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void move_player(t_data *data, int dx, int dy)
 				data->map->start_x = new_x;
 				data->map->start_y = new_y;
 				new_player_image(data);
-				put_map(data->mlx, data);
+				render_map(data);
 				data->map->coins -= 1;
 			}
 	}
