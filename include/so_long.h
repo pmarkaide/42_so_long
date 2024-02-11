@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:20:20 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/11 12:10:06 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/11 12:38:50 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,17 @@ typedef struct s_data
 }				t_data;
 
 void			map_is_valid(char *map_file, t_map *map);
-size_t			count_rows_in_array(char **map);
 void			free_map(t_map *data);
 void			free_map_and_exit(t_map *map, char *error_msg);
 void			free_game_and_bad_exit(t_data *data, char *error_msg);
 void			free_game_and_good_exit(t_data *data);
 int				error_1(const char *error_message);
-char			*errorN(const char *error_message);
+char			*error_null(const char *error_message);
 void			exit_1(const char *error_msg);
 size_t			get_file_length_in_bytes(char *map_file);
 void			file_is_valid(char *map_file);
 void			check_path(t_map *data);
 size_t			**allocate_2d_array(size_t rows, size_t cols);
-void			print_2d_array(char **array);
 int32_t			game_init(t_map map);
 void			quit_hook(void *param);
 void			player_hook(mlx_key_data_t keydata, t_data *data);
@@ -68,3 +66,5 @@ void			new_player_image(t_data *data);
 void			exit_hook(void *param);
 int				two_consecutive_newlines(char *str);
 void			load_images_into_struct(t_data *data, mlx_t *mlx);
+mlx_image_t		*load_png_into_image(t_data *data, char *file);
+size_t			count_rows_in_array(char **map);
