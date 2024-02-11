@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:12:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/11 12:37:46 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/11 14:24:48 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	file_is_valid(char *map_file)
 	else
 	{
 		bytes_read = read(fd, buffer, 1);
-		if (bytes_read == 0)
-			exit_1("File is empty");
+		if (bytes_read <= 0)
+			exit_1("File is empty or couldn't be read");
 	}
 	close(fd);
 }
@@ -71,21 +71,6 @@ size_t	**allocate_2d_array(size_t rows, size_t cols)
 	}
 	array[rows] = NULL;
 	return (array);
-}
-
-int	two_consecutive_newlines(char *str)
-{
-	char	prev;
-
-	prev = '\0';
-	while (*str)
-	{
-		if (*str == '\n' && prev == '\n')
-			return (1);
-		prev = *str;
-		str++;
-	}
-	return (0);
 }
 
 size_t	count_rows_in_array(char **map)
