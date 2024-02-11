@@ -6,38 +6,42 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:13:29 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/09 12:27:47 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/11 12:22:55 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void free_map(t_map *map)
+void	free_map(t_map *map)
 {
+	size_t	i;
+
 	if (map == NULL)
-		return;
+		return ;
 	if (map->map_str != NULL)
 	{
 		free(map->map_str);
 		map->map_str = NULL;
 	}
+	i = 0;
 	if (map->map != NULL)
 	{
-		for (size_t i = 0; i < map->rows; i++)
-			free(map->map[i]);
+		while (i < map->rows)
+			free(map->map[i++]);
 		free(map->map);
 		map->map = NULL;
 	}
+	i = 0;
 	if (map->visited != NULL)
 	{
-		for (size_t i = 0; i < map->rows; i++)
-			free(map->visited[i]);
+		while (i < map->rows)
+			free(map->visited[i++]);
 		free(map->visited);
 		map->visited = NULL;
 	}
 }
 
-void	 free_map_and_exit(t_map *map, char *error_msg)
+void	free_map_and_exit(t_map *map, char *error_msg)
 {
 	free_map(map);
 	ft_printf("%sError\n%s%s\n", RED, DEFAULT, error_msg);
@@ -47,7 +51,7 @@ void	 free_map_and_exit(t_map *map, char *error_msg)
 void	free_game(t_data *data)
 {
 	if (data == NULL)
-		exit (0);
+		exit(0);
 	free_map(data->map);
 	mlx_delete_image(data->mlx, data->player);
 	mlx_delete_image(data->mlx, data->wall);
@@ -58,17 +62,19 @@ void	free_game(t_data *data)
 	mlx_terminate(data->mlx);
 }
 
-void	 free_game_and_bad_exit(t_data *data, char *error_msg)
+void	free_game_and_bad_exit(t_data *data, char *error_msg)
 {
 	free_game(data);
 	ft_printf("%sError\n%s%s\n", RED, DEFAULT, error_msg);
-	exit (1);
+	exit(1);
 }
 
-void	 free_game_and_good_exit(t_data *data)
+void	free_game_and_good_exit(t_data *data)
 {
-	char *error_msg = "You win the game!";
+	char	*error_msg;
+
+	error_msg = "You win the game!";
 	free_game(data);
 	ft_printf("%sCONGRATULATIONS!\n%s%s\n", GREEN, DEFAULT, error_msg);
-	exit (0);
+	exit(0);
 }

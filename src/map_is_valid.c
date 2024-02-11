@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/09 17:24:52 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/11 12:10:06 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	load_map(char *map_file, t_map *map)
 	read(fd, map->map_str, file_len);
 	close(fd);
 	map->map_str[file_len] = '\0';
-	if(map->map_str[file_len - 1] == '\n')
+	if (map->map_str[file_len - 1] == '\n')
 		free_map_and_exit(map, "Empty line in map");
-	if(two_consecutive_newlines(map->map_str))
+	if (two_consecutive_newlines(map->map_str))
 		free_map_and_exit(map, "Empty line in map");
 	map->map = ft_split(map->map_str, '\n');
-	if(!map->map[0] || map->map == NULL)
+	if (!map->map[0] || map->map == NULL)
 		free_map_and_exit(map, "Map layout not correct");
 	map->rows = count_rows_in_array(map->map);
 	map->cols = ft_strlen(map->map[0]);
@@ -61,7 +61,6 @@ void	check_layout(t_map *map)
 			free_map_and_exit(map, "Incorrect walls");
 		i++;
 	}
-		
 }
 
 void	check_chars(t_map *map)
@@ -89,7 +88,7 @@ void	check_chars(t_map *map)
 		free_map_and_exit(map, "Map need 1 exit, 1 player and >0 coins");
 }
 
-void map_is_valid(char *map_file, t_map *map)
+void	map_is_valid(char *map_file, t_map *map)
 {
 	ft_bzero(map, sizeof(*map));
 	file_is_valid(map_file);
