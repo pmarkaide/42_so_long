@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:09:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/11 14:30:47 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/12 10:28:06 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,12 @@
 
 void	load_map(char *map_file, t_map *map)
 {
-	int		fd;
-	size_t	file_len;
+	size_t	map_len;
 
-	file_len = get_file_length_in_bytes(map_file);
-	map->map_str = malloc(sizeof(char) * (file_len + 1));
-	if (!map->map_str)
-		exit_1("Malloc problems");
-	fd = open(map_file, O_RDONLY);
-	read(fd, map->map_str, file_len);
-	close(fd);
-	map->map_str[file_len] = '\0';
-	if (map->map_str[file_len - 1] == '\n' || map->map_str[0] == '\n')
+	map->map_str = read_whole_file(map_file);
+	map_len = ft_strlen(map->map_str);
+	map->map_str[map_len] = '\0';
+	if (map->map_str[map_len - 1] == '\n' || map->map_str[0] == '\n')
 		free_map_and_exit(map, "Empty line in map");
 	map->map = ft_split(map->map_str, '\n');
 	if (!map->map[0] || map->map == NULL)

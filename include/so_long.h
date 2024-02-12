@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:20:20 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/11 12:38:50 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/12 10:25:37 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void			player_hook(mlx_key_data_t keydata, t_data *data);
 void			render_map(t_data *data);
 void			new_player_image(t_data *data);
 void			exit_hook(void *param);
-int				two_consecutive_newlines(char *str);
 void			load_images_into_struct(t_data *data, mlx_t *mlx);
 mlx_image_t		*load_png_into_image(t_data *data, char *file);
 size_t			count_rows_in_array(char **map);
+char 			*read_whole_file(char *file);
+

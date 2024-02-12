@@ -6,7 +6,7 @@
 /*   By: pmarkaid <pmarkaid@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:12:55 by pmarkaid          #+#    #+#             */
-/*   Updated: 2024/02/11 14:24:48 by pmarkaid         ###   ########.fr       */
+/*   Updated: 2024/02/12 10:29:49 by pmarkaid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,26 @@ size_t	get_file_length_in_bytes(char *map_file)
 		bytes_read++;
 	close(fd);
 	return (bytes_read);
+}
+
+char	*read_whole_file(char *file)
+{
+	int		fd;
+	char	*buffer;
+	size_t	file_len;
+	size_t	bytes_read;
+
+	file_is_valid(file);
+	file_len = get_file_length_in_bytes(file);
+	buffer = malloc(sizeof(char) * (file_len + 1));
+	if (!buffer)
+		exit_1("Malloc problems");
+	fd = open(file, O_RDONLY);
+	bytes_read = read(fd, buffer, file_len);
+	if (bytes_read <= 0)
+		exit_1("File is empty or couldn't be read");
+	close(fd);
+	return (buffer);
 }
 
 size_t	**allocate_2d_array(size_t rows, size_t cols)
